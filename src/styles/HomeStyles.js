@@ -28,7 +28,7 @@ const HomeStyles = StyleSheet.create({
         display: "flex",
         flexDirection: "row",
         alignContent: "center",
-        alignItems: "center"
+        alignItems: "center",
     },
     logButton : {
         margin : 15,
@@ -42,12 +42,15 @@ const HomeStyles = StyleSheet.create({
         backgroundColor : "#324466"
     },
     buttonText : {
-        fontSize : 24,
+        fontSize : 28,
         color : "#e0e0e0"
     },
     settingStyle : {
         fontSize: 35,
-        margin: 10
+        margin: 10,
+        backgroundColor: "#232c3d",
+        color: "#a1b2d4",
+        borderRadius: 20
     }
 
 });

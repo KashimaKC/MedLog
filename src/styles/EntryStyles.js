@@ -8,7 +8,7 @@ const EntryStyles = StyleSheet.create({
         alignItems: "center",
         borderRadius: 20,
         minWidth: "90%",
-        maxWidth: "90%"
+        maxWidth: "90%",
     },
     headerStyle : {
         fontSize : 20,
@@ -32,13 +32,19 @@ const EntryStyles = StyleSheet.create({
     },
     inputContainer : {
         padding: 5,
-        width: "90%",  
+        width: "90%",         
     },
     textInputStyle : {
         padding: 5,
         backgroundColor: "#324466",
         color: "#e0e0e0"
-    },  
+    },
+    bottomContainer : {
+        dispaly: "flex",
+        flexDirection: "row",
+        alignContent: "center",
+        alignItems: "center",
+    }, 
     submitButtonStyle : {
         backgroundColor: 'black',
         padding: 20,
@@ -47,6 +53,14 @@ const EntryStyles = StyleSheet.create({
     },
     submitButtonText : {
         color: "white"
+    },
+    exitButton : {
+        fontSize: 35,
+        margin: 10,
+        padding: 9,
+        backgroundColor: "red",
+        color: "black",
+        borderRadius: 15
     }
 
 });

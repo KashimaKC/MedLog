@@ -2,6 +2,7 @@ import { Component } from "react";
 import { View, Text, TextInput, Pressable, Alert } from "react-native";
 import { Picker } from "@react-native-picker/picker"
 import EntryStyles from "./styles/EntryStyles"
+import Ionicons from "@expo/vector-icons/Ionicons"
 
 class DataEntry extends Component {
     constructor(props) {
@@ -22,6 +23,10 @@ class DataEntry extends Component {
     //resets states to default for new entry.
     _setRenderTrue = () => {
         this.setState({isRendered: true, painScale: "1", dateToLog: "", notesToLog: ""});
+    }
+
+    _setRenderFalse = () => {
+        this.setState({isRendered: false});
     }
 
     _getDate = () => {
@@ -76,9 +81,14 @@ class DataEntry extends Component {
                         </TextInput>
                     </View>
 
-                    <Pressable onPress={this._logResults} style={EntryStyles.submitButtonStyle}>
-                        <Text style={EntryStyles.submitButtonText}>Log Event</Text>
-                    </Pressable>
+                    <View style={EntryStyles.bottomContainer}>
+                        <Pressable onPress={this._logResults} style={EntryStyles.submitButtonStyle}>
+                            <Text style={EntryStyles.submitButtonText}>Log Event</Text>
+                        </Pressable>
+                        <Pressable onPress={this._setRenderFalse}>
+                            <Ionicons name="close-outline" style={EntryStyles.exitButton}/>
+                        </Pressable>
+                    </View>
                 </View>
 
                 );

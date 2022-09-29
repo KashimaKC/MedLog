@@ -5,17 +5,25 @@ import USERDATA  from "./UserData";
 import UserDataList from "./UserDataList";
 import DataEntry from "./DataEntry";
 import Ionicons from "@expo/vector-icons/Ionicons"
+import SettingsPage from "./SettingsPage";
 
 class Home extends Component {
     constructor(props) {
         super(props);
 
         let isPicking = "";
+        let isInSettings = "";
 
         this.changeChild = React.createRef();
 
         let pickingComponent;
-        this.state = { isPicking:isPicking, pickingComponent:pickingComponent };
+        let settingsComponent;
+        this.state = { 
+            isPicking:isPicking,
+            pickingComponent:pickingComponent,
+            isInSettings: isInSettings,
+            settingsComponent: settingsComponent
+        };
     }
 
     _renderItem = ({ item }) => {
@@ -39,6 +47,18 @@ class Home extends Component {
         });
     }
 
+    _displaySettings = () => {
+
+        this.setState({isInSettings: "true"}, () => {
+            if (this.state.isInSettings == "true") {
+
+                this.setState({settingsComponent: <SettingsPage />}, () => {
+
+                });
+            }
+        });
+    }
+
     render () {
         return (
             <View style={HomeStyles.container}>
@@ -51,13 +71,14 @@ class Home extends Component {
                             Log Event
                         </Text>
                     </Pressable>
-                    <Pressable style={HomeStyles.settingStyle}>
-                        <Ionicons name="settings" style={HomeStyles.settingStyle}/>
+                    <Pressable style={HomeStyles.settingStyle} onPress={this._displaySettings}>
+                        <Ionicons name="settings-sharp" style={HomeStyles.settingStyle}/>
                     </Pressable>
                     
                 </View>
                 
                 {this.state.pickingComponent}
+                {this.state.settingsComponent}
 
                 <FlatList data={USERDATA} renderItem={this._renderItem} />
             </View>
