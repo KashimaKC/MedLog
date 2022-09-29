@@ -19,8 +19,9 @@ class DataEntry extends Component {
         };
     }
 
+    //resets states to default for new entry.
     _setRenderTrue = () => {
-        this.setState({isRendered: true});
+        this.setState({isRendered: true, painScale: "1", dateToLog: "", notesToLog: ""});
     }
 
     _getDate = () => {
@@ -51,24 +52,29 @@ class DataEntry extends Component {
 
                 <View style={EntryStyles.viewContainer}>
                     <Text style={EntryStyles.headerStyle}>Enter Log:</Text>
-                    <Text>Date: {this._getDate()}</Text>
+                    <Text style={EntryStyles.dateStyle}>Date: {this._getDate()}</Text>
 
-                    <Text>Enter Pain Scale: </Text>
-                    <Picker selectedValue={this.state.painScale}
-                            onValueChange={(painScale) => this.setState({painScale})}
-                            style={EntryStyles.pickerStyle}>
-                        <Picker.Item label={"1"} value="1"/>
-                        <Picker.Item label={"2"} value="2"/>
-                        <Picker.Item label={"3"} value="3"/>
-                        <Picker.Item label={"4"} value="4"/>
-                        <Picker.Item label={"5"} value="5"/>
-                    </Picker>
-
-                    <TextInput
-                        onChangeText={(notesToLog) => this.setState({notesToLog})}
-                        value={this.state.notesToLog}
-                        placeholder="Notes:">
-                    </TextInput>
+                    <Text style={EntryStyles.dateStyle}>Enter Pain Scale: </Text>
+                    <View style={EntryStyles.pickerContainer}>
+                        <Picker selectedValue={this.state.painScale}
+                                onValueChange={(painScale) => this.setState({painScale})}
+                                style={EntryStyles.pickerStyle}>
+                            <Picker.Item label={"1"} value="1"/>
+                            <Picker.Item label={"2"} value="2"/>
+                            <Picker.Item label={"3"} value="3"/>
+                            <Picker.Item label={"4"} value="4"/>
+                            <Picker.Item label={"5"} value="5"/>
+                        </Picker>
+                    </View>
+                    <View style={EntryStyles.inputContainer}>
+                        <TextInput
+                            onChangeText={(notesToLog) => this.setState({notesToLog})}
+                            value={this.state.notesToLog}
+                            multiline={true}
+                            style={EntryStyles.textInputStyle}
+                            placeholder="Notes:">
+                        </TextInput>
+                    </View>
 
                     <Pressable onPress={this._logResults} style={EntryStyles.submitButtonStyle}>
                         <Text style={EntryStyles.submitButtonText}>Log Event</Text>

@@ -24,6 +24,12 @@ const HomeStyles = StyleSheet.create({
         borderWidth: 3,
         borderRadius: 12
     },
+    navBar : {
+        display: "flex",
+        flexDirection: "row",
+        alignContent: "center",
+        alignItems: "center"
+    },
     logButton : {
         margin : 15,
         padding: 5,
@@ -38,6 +44,10 @@ const HomeStyles = StyleSheet.create({
     buttonText : {
         fontSize : 24,
         color : "#e0e0e0"
+    },
+    settingStyle : {
+        fontSize: 35,
+        margin: 10
     }
 
 });

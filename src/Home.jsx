@@ -4,6 +4,7 @@ import HomeStyles from "./styles/HomeStyles"
 import USERDATA  from "./UserData";
 import UserDataList from "./UserDataList";
 import DataEntry from "./DataEntry";
+import Ionicons from "@expo/vector-icons/Ionicons"
 
 class Home extends Component {
     constructor(props) {
@@ -14,7 +15,6 @@ class Home extends Component {
         this.changeChild = React.createRef();
 
         let pickingComponent;
-        this._endEntry = this._endEntry.bind(this);
         this.state = { isPicking:isPicking, pickingComponent:pickingComponent };
     }
 
@@ -39,28 +39,27 @@ class Home extends Component {
         });
     }
 
-    _endEntry = () => {
-
-        Alert.alert("test");
-
-    }
-
-
     render () {
         return (
             <View style={HomeStyles.container}>
                 <Text style={HomeStyles.header}>MedLog v0.0.0</Text>
 
-                <Pressable style={HomeStyles.logButton} onPress={this._displayPicker}>
-                    <Text style={HomeStyles.buttonText}>
-                        Log Event
-                    </Text>
-                </Pressable>
+                <View style={HomeStyles.navBar}>
+
+                    <Pressable style={HomeStyles.logButton} onPress={this._displayPicker}>
+                        <Text style={HomeStyles.buttonText}>
+                            Log Event
+                        </Text>
+                    </Pressable>
+                    <Pressable style={HomeStyles.settingStyle}>
+                        <Ionicons name="settings" style={HomeStyles.settingStyle}/>
+                    </Pressable>
+                    
+                </View>
                 
                 {this.state.pickingComponent}
 
                 <FlatList data={USERDATA} renderItem={this._renderItem} />
-
             </View>
         )
     }
