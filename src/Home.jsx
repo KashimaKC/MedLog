@@ -10,7 +10,11 @@ class Home extends Component {
         super(props);
 
         let isPicking = "";
+
+        this.changeChild = React.createRef();
+
         let pickingComponent;
+        this._endEntry = this._endEntry.bind(this);
         this.state = { isPicking:isPicking, pickingComponent:pickingComponent };
     }
 
@@ -20,15 +24,25 @@ class Home extends Component {
         );
     }
 
+    //alternates the state of which the log event component is rendered.
+    //isPicking must be true for the parent and for the child isRendered must be true to show.
     _displayPicker = () => {
 
         this.setState({isPicking: "true"}, () => {
             if (this.state.isPicking == "true") {
-                this.setState({pickingComponent: <DataEntry />}, () => {
 
+                //mwah this is perfection thank god. please reference this again!
+                this.setState({pickingComponent: <DataEntry ref={this.changeChild}/>}, () => {
+                    this.changeChild.current._setRenderTrue();
                 }); 
-            } 
+            }
         });
+    }
+
+    _endEntry = () => {
+
+        Alert.alert("test");
+
     }
 
 
