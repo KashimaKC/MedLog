@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import { Text, View, Pressable, FlatList, TouchableWithoutFeedback, Alert } from "react-native";
 import HomeStyles from "./styles/HomeStyles";
 import FlatListStyle from "./styles/FlatListStyle";
@@ -7,6 +7,7 @@ import UserDataList from "./UserDataList";
 import DataEntry from "./DataEntry";
 import Ionicons from "@expo/vector-icons/Ionicons"
 import SettingsPage from "./SettingsPage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 class Home extends Component {
     constructor(props) {
@@ -14,6 +15,7 @@ class Home extends Component {
 
         let isPicking = "";
         let isInSettings = "";
+        //let STORAGE_KEY = '@KEY';
 
         this.changeChild = React.createRef();
         this.setChildRendered = React.createRef();

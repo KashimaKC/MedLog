@@ -29,13 +29,13 @@ class SettingsPage extends Component {
 
                     <View style={SettingsStyle.bottomContainer}>
 
-                        <Pressable style={SettingsStyle.backButtonContainer} onPress={this._setRenderFalse}>
-                            <Ionicons name="return-down-back-outline" style={[SettingsStyle.backButton]}/>
-                        </Pressable>
-
                         <Pressable style={SettingsStyle.clearButtons}>
                             <Text style={SettingsStyle.buttonContents}>Clear Data</Text>
                             <Ionicons name="remove-circle-outline" style={[SettingsStyle.buttonContents, SettingsStyle.cancelIcon]}/>
+                        </Pressable>
+
+                        <Pressable style={SettingsStyle.backButtonContainer} onPress={this._setRenderFalse}>
+                            <Ionicons name="return-down-back-outline" style={[SettingsStyle.backButton]}/>
                         </Pressable>
 
                     </View>

@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { View, Text, TextInput, Pressable, Alert } from "react-native";
+import { AsyncStorage } from "@react-native-async-storage/async-storage";
 import { Picker } from "@react-native-picker/picker"
 import UserData from "./UserData";
 import EntryStyles from "./styles/EntryStyles"
@@ -27,6 +28,7 @@ class DataEntry extends Component {
     }
 
     _setRenderFalse = () => {
+
         this.setState({isRendered: false});
     }
 
