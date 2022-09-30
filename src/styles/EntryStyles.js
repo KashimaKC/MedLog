@@ -7,8 +7,8 @@ const EntryStyles = StyleSheet.create({
         display: "flex",
         alignItems: "center",
         borderRadius: 20,
-        minWidth: "90%",
-        maxWidth: "90%",
+        minWidth: "100%",
+        maxWidth: "100%",
     },
     headerStyle : {
         fontSize : 20,

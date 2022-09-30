@@ -1,33 +1,38 @@
 
-
 const USERDATA = [
     {
-        title: "sample data 1",
+		id: 1,
+        notes: "sample data 1",
         date: "9/28/2022",
         painRating: 8
     },
     {
-        title: "sample data 2",
+		id: 2,
+        notes: "sample data 2",
         date: "9/22/2022",
         painRating: 5
     },
     {
-        title: "sample data 3",
+		id: 3,
+        notes: "sample data 3",
         date: "9/22/2022",
         painRating: 2
     },
     {
-        title: "sample data 4",
+		id: 4,
+        notes: "sample data 4",
         date: "9/22/2022",
         painRating: 7
     },
     {
-        title: "sample data 5",
+		id: 5,
+        notes: "sample data 5",
         date: "9/22/2022",
         painRating: 9
     },
     {
-        title: "sample data 6",
+		id: 6,
+        notes: "sample data 6",
         date: "9/22/2022",
         painRating: 4
     }

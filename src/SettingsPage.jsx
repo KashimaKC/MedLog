@@ -11,12 +11,34 @@ class SettingsPage extends Component {
         this.state = {isRendered:isRendered}
     }
 
+    _setRenderTrue = () => {
+        this.setState({isRendered: true});
+    }
+
+    _setRenderFalse = () => {
+        this.setState({isRendered: false});
+    }
+
     render() {
 
         if (this.state.isRendered == true) {
             return (
                 <View style={SettingsStyle.settingsContainer}>
-                    <Text>Test</Text>
+                    <Text style={SettingsStyle.settingsText}>Settings Page:</Text>
+                    <Text style={SettingsStyle.settingsText}>Version 0.0.1</Text>
+
+                    <View style={SettingsStyle.bottomContainer}>
+
+                        <Pressable style={SettingsStyle.backButtonContainer} onPress={this._setRenderFalse}>
+                            <Ionicons name="return-down-back-outline" style={[SettingsStyle.backButton]}/>
+                        </Pressable>
+
+                        <Pressable style={SettingsStyle.clearButtons}>
+                            <Text style={SettingsStyle.buttonContents}>Clear Data</Text>
+                            <Ionicons name="remove-circle-outline" style={[SettingsStyle.buttonContents, SettingsStyle.cancelIcon]}/>
+                        </Pressable>
+
+                    </View>
                 </View>
             );
         }

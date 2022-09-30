@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { View, Text, TextInput, Pressable, Alert } from "react-native";
 import { Picker } from "@react-native-picker/picker"
+import UserData from "./UserData";
 import EntryStyles from "./styles/EntryStyles"
 import Ionicons from "@expo/vector-icons/Ionicons"
 
@@ -41,8 +42,16 @@ class DataEntry extends Component {
         return today;
     }
 
+    //creating interaction with user data storage.
     _logResults = () => {
+
         this.setState({dateToLog: this._getDate()}, () => {
+            UserData.unshift({
+                id: UserData.length + 1,
+                painRating: `${this.state.painScale}`,
+                date: `${this.state.dateToLog}`,
+                notes: `${this.state.notesToLog}`});
+
             Alert.alert('Log Successful!',
             `pain: ${this.state.painScale}\ndate: ${this.state.dateToLog} \nnotes: ${this.state.notesToLog}`);
         });
