@@ -6,3 +6,7 @@ It utilizes React Native to create a simple and easy to adopt interface.
 
 Stay safe, 
 Joshua
+
+# TODO
+
+push the data submitted to the web server! also consider having some sort of secret key to access it for when the DNS gets configured.
