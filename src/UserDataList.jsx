@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Pressable, Text, View, Alert } from "react-native";
 import DataListStyles from "./styles/DataListStyles";
-import USERDATA from "./UserData";
 import Ionicons from "@expo/vector-icons/Ionicons"
 
 //this class exports the data cards for the user. style this to manipulate how it actually shows.
@@ -28,6 +27,7 @@ class UserDataList extends Component {
     discardEntry = () => {
 
         this.setState({isRendered: false})
+        //insert some more serverside programming here to remove the entry from the db.
 
     }
 

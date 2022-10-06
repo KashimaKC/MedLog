@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { View, Text, TextInput, Pressable, Alert } from "react-native";
+import { View, Text, TextInput, TouchableHighlight, Alert, Pressable } from "react-native";
 import { AsyncStorage } from "@react-native-async-storage/async-storage";
 import { Picker } from "@react-native-picker/picker"
 import UserData from "./UserData";
@@ -38,7 +38,7 @@ class DataEntry extends Component {
         let mm = String(today.getMonth() + 1).padStart(2, '0');
         var yyyy = today.getFullYear();
 
-        today = mm + '/' + dd + '/' + yyyy;
+        today = mm + '-' + dd + '-' + yyyy;
         
         //this.setState({dateToLog: today});
         return today;
@@ -47,12 +47,12 @@ class DataEntry extends Component {
     //creating interaction with user data storage.
     _logResults = () => {
 
+        this.props.refreshData;
+
         this.setState({dateToLog: this._getDate()}, () => {
-            UserData.unshift({
-                id: UserData.length + 1,
-                painRating: `${this.state.painScale}`,
-                date: `${this.state.dateToLog}`,
-                notes: `${this.state.notesToLog}`});
+
+            //set post request to server.
+            fetch(`http://192.168.1.31/?POST/${this.state.dateToLog}/${this.state.painScale}/${this.state.notesToLog}`);
 
             Alert.alert('Log Successful!',
             `pain: ${this.state.painScale}\ndate: ${this.state.dateToLog} \nnotes: ${this.state.notesToLog}`);
@@ -93,9 +93,9 @@ class DataEntry extends Component {
                     </View>
 
                     <View style={EntryStyles.bottomContainer}>
-                        <Pressable onPress={this._logResults} style={EntryStyles.submitButtonStyle}>
+                        <TouchableHighlight onPress={this._logResults} style={EntryStyles.submitButtonStyle}>
                             <Text style={EntryStyles.submitButtonText}>Log Event</Text>
-                        </Pressable>
+                        </TouchableHighlight>
                         <Pressable onPress={this._setRenderFalse}>
                             <Ionicons name="close-outline" style={EntryStyles.exitButton}/>
                         </Pressable>

@@ -1,5 +1,5 @@
 import React, { Component, useEffect } from "react";
-import { Text, View, Pressable, FlatList, TouchableWithoutFeedback, Alert } from "react-native";
+import { Text, View, TouchableHighlight, FlatList, TouchableWithoutFeedback, Alert, RefreshControl } from "react-native";
 import HomeStyles from "./styles/HomeStyles";
 import FlatListStyle from "./styles/FlatListStyle";
 //USERDATA not in use while trying to figure out how to query the web server.
@@ -16,7 +16,7 @@ class Home extends Component {
         let isPicking, isInSettings = "";
         this.changeChild = React.createRef();
         this.setChildRendered = React.createRef();
-        let refresh = false;
+        let refresh = 0;
 
         let settingsComponent, pickingComponent;
 
@@ -28,10 +28,23 @@ class Home extends Component {
             refresh: refresh,
             listData: []
         };
+
     }
+    
+    //refresh section
+    //_______
+    refreshData = () => {
+        this._getListData();
+    }
+    //_______
+    //end refresh
 
     componentDidMount() {
-        return fetch('http://192.168.1.31')
+        this._getListData();
+    }
+
+    _getListData = () => {
+        return fetch('http://192.168.1.31/?REQUEST')
             .then(response => response.json())
             .then(responseJSON => {
                 this.setState({listData: responseJSON});
@@ -83,31 +96,40 @@ class Home extends Component {
     }
 
     render () {
+
+
         return (
             <View style={HomeStyles.container}>
-                <Text style={HomeStyles.header}>MedLog v0.0.1</Text>
+                <Text style={HomeStyles.header}>MedLog</Text>
 
                 <View style={HomeStyles.navBar}>
 
-                    <Pressable style={HomeStyles.logButton} onPress={this._displayPicker}>
+                    <TouchableHighlight onPress={this.refreshData}>
+                        <Text>
+                            Refresh
+                        </Text>
+                    </TouchableHighlight>
+
+                    <TouchableHighlight style={HomeStyles.logButton} onPress={this._displayPicker}>
                         <Text style={HomeStyles.buttonText}>
                             Log Event
                         </Text>
-                    </Pressable>
-                    <Pressable style={HomeStyles.settingStyle} onPress={this._displaySettings}>
+                    </TouchableHighlight>
+                    <TouchableHighlight style={HomeStyles.settingStyle} onPress={this._displaySettings}>
                         <Ionicons name="settings-sharp" style={HomeStyles.settingStyle}/>
-                    </Pressable>
+                    </TouchableHighlight>
                     
                 </View>
                 
                 {this.state.pickingComponent}
                 {this.state.settingsComponent}
+
                 <TouchableWithoutFeedback style={FlatListStyle.listContainer}>
                     <FlatList 
                         data={this.state.listData} 
                         renderItem={this._renderItem} 
                         keyExtractor={item => item.id}
-                        extraData={this.state.refresh}/>
+                        extraData={this.props}/>
                 </TouchableWithoutFeedback>
             </View>
         )
