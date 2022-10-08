@@ -3,7 +3,7 @@ import { Text, View, TouchableHighlight, FlatList, TouchableWithoutFeedback, Ale
 import HomeStyles from "./styles/HomeStyles";
 import FlatListStyle from "./styles/FlatListStyle";
 //USERDATA not in use while trying to figure out how to query the web server.
-import USERDATA  from "./UserData";
+import FlatListComp from "./FlatListComp";
 import UserDataList from "./UserDataList";
 import DataEntry from "./DataEntry";
 import Ionicons from "@expo/vector-icons/Ionicons"
@@ -48,22 +48,11 @@ class Home extends Component {
             .then(response => response.json())
             .then(responseJSON => {
                 this.setState({listData: responseJSON});
+                console.log(this.state.listData);
             })
             .catch(error => {
                 console.error(error);
         });
-    }
-
-    _renderItem = ({ item }) => {
-
-        return (
-            <UserDataList
-             notes={item.notes}
-             date={item.date} 
-             painRating={item.painRating} 
-             id={item.id}
-            />
-        );
     }
 
 
@@ -124,13 +113,7 @@ class Home extends Component {
                 {this.state.pickingComponent}
                 {this.state.settingsComponent}
 
-                <TouchableWithoutFeedback style={FlatListStyle.listContainer}>
-                    <FlatList 
-                        data={this.state.listData} 
-                        renderItem={this._renderItem} 
-                        keyExtractor={item => item.id}
-                        extraData={this.props}/>
-                </TouchableWithoutFeedback>
+                <FlatListComp listData={this.state.listData} isRendered={true}/>
             </View>
         )
     }

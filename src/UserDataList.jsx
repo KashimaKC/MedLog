@@ -20,12 +20,13 @@ class UserDataList extends Component {
 
     componentDidMount() {
         this.setState({entryID: this.props.id}, () => {
-
+    
         });
     }
 
     discardEntry = () => {
 
+        Alert.alert("Are you sure?");
         this.setState({isRendered: false})
         //insert some more serverside programming here to remove the entry from the db.
 
